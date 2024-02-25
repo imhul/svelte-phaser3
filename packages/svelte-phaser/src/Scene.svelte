@@ -89,6 +89,13 @@
   export let create = undefined
 
   /**
+   * Use this callback to update the scene.
+   * 
+   * @type {function}
+   */
+   export let update = undefined
+
+  /**
    * This method is called by the Scene Manager when the scene starts,
    * before preload() and create().
    *
@@ -122,6 +129,7 @@
   let loading = !!preload
   let loadingProgress = 0
 
+  instance.update = update ? () => update(instance) : null
   instance.preload = preload ? () => preload(instance) : null
   instance.create = create ? () => create(instance) : null
   instance.init = init ? () => init(instance) : null
